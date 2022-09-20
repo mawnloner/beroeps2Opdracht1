@@ -16,3 +16,38 @@ model test {
   age   Int
   score Float
 }
+
+/////////////////////////////////////////////
+
+model crystallen {
+  id   String @id @default(uuid())
+  naam String
+
+  items item[]
+}
+
+model gebruikers {
+  id           String       @id @default(uuid())
+  naam         String
+  password     String
+  role         String       @default("USER")
+  bestellingen bestelling[]
+}
+
+model item {
+  id      String     @id @default(uuid())
+  crystal crystallen @relation(fields: [crystallenId], references: [id])
+  count   Int        @default(1)
+
+  crystallenId          String
+  bestelling            bestelling? @relation(fields: [bestellingOrdernummer], references: [ordernummer])
+  bestellingOrdernummer Int?
+}
+
+model bestelling {
+  ordernummer Int    @id @default(autoincrement())
+  products    item[]
+
+  gebruikers   gebruikers? @relation(fields: [gebruikersId], references: [id])
+  gebruikersId String?
+}
