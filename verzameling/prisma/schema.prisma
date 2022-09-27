@@ -10,15 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model test {
-  id    String @id @default(cuid())
-  name  String
-  age   Int
-  score Float
-}
-
-/////////////////////////////////////////////
-
 model crystallen {
   id   String @id @default(uuid())
   naam String
