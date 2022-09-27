@@ -22,8 +22,15 @@ model test {
 model crystallen {
   id   String @id @default(uuid())
   naam String
+  prijs Float
+  kleur String
+  gewicht String
+  transperant Boolean
+  zodiac String
+  herkomst String
+  inhoud Float
 
-  items item[]
+  items item[] //koppeling met items (bijde kanten)
 }
 
 model gebruikers {
@@ -31,22 +38,22 @@ model gebruikers {
   naam         String
   password     String
   role         String       @default("USER")
-  bestellingen bestelling[]
+  bestellingen bestelling[] //koppeling met bestelling (bijde kanten)
 }
 
 model item {
   id      String     @id @default(uuid())
-  crystal crystallen @relation(fields: [crystallenId], references: [id])
+  crystal crystallen @relation(fields: [crystallenId], references: [id]) //zegt: crystal heeft een relatie met de tabel crystallen. En crystalID staat gelijk aan id uit crystallen
   count   Int        @default(1)
 
   crystallenId          String
   bestelling            bestelling? @relation(fields: [bestellingOrdernummer], references: [ordernummer])
-  bestellingOrdernummer Int?
+  bestellingOrdernummer Int? //hoeft niet ingevult te worden, want het wordt al ingevult bij de relatie hierboven (bestellingOrdernummer)
 }
 
 model bestelling {
   ordernummer Int    @id @default(autoincrement())
-  products    item[]
+  products    item[] //koppeling met item bestelling
 
   gebruikers   gebruikers? @relation(fields: [gebruikersId], references: [id])
   gebruikersId String?
