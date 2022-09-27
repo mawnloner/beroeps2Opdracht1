@@ -1,16 +1,13 @@
 import type { NextPage } from 'next'
+import { json } from 'stream/consumers';
 
-declare var userName: string;
-declare var password: string;
 
-async function createAccount() {
-    userName: userName;
-    password: password;
-}
-
-export {createAccount}; {
-    userName: userName;
-    password: password;
+async function addUser(data) {
+    const response = await fetch('/api/users/addUser', {
+        method: 'POST',
+        body: JSON.stringify(data)
+    })
+    console.log(response)
 }
 
 const Login: NextPage = ({ }) => {
@@ -18,9 +15,15 @@ const Login: NextPage = ({ }) => {
         <div>
             <fieldset>
             <legend>Maak een account</legend>
-                <form onSubmit={createAccount()} id="createAccount">
+                <form
+                    method='POST'
+                    onSubmit={async (data) => {
+                        await addUser(data)
+                    }}
+                    id="createAccount"
+                >
                     <label htmlFor="userName">Name:</label>
-                    <input required type="text" name="userName" id="userName"/>
+                    <input required type="text" name="name" id="userName"/>
                     <label htmlFor="password">Password:</label>
                     <input required type="password" name="password" id="password"/>
 
