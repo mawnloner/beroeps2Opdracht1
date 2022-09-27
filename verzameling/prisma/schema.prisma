@@ -10,16 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model crystallen {
-  id   String @id @default(uuid())
-  naam String
-  prijs Float
-  kleur String
-  gewicht String
+model kristallen {
+  id          String  @id @default(uuid())
+  naam        String
+  prijs       Float
+  kleur       String
+  gewicht     String
   transperant Boolean
-  zodiac String
-  herkomst String
-  inhoud Float
+  zodiac      String
+  herkomst    String
+  inhoud      Float
 
   items item[] //koppeling met items (bijde kanten)
 }
@@ -34,10 +34,10 @@ model gebruikers {
 
 model item {
   id      String     @id @default(uuid())
-  crystal crystallen @relation(fields: [crystallenId], references: [id]) //zegt: crystal heeft een relatie met de tabel crystallen. En crystalID staat gelijk aan id uit crystallen
+  crystal kristallen @relation(fields: [kristallenId], references: [id]) //zegt: crystal heeft een relatie met de tabel kristallen. En crystalID staat gelijk aan id uit kristallen
   count   Int        @default(1)
 
-  crystallenId          String
+  kristallenId          String
   bestelling            bestelling? @relation(fields: [bestellingOrdernummer], references: [ordernummer])
   bestellingOrdernummer Int? //hoeft niet ingevult te worden, want het wordt al ingevult bij de relatie hierboven (bestellingOrdernummer)
 }
