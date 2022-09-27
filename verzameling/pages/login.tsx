@@ -1,13 +1,21 @@
 import type { NextPage } from 'next'
-import { json } from 'stream/consumers';
+import { FormEvent } from 'react'
 
 
-async function addUser(data) {
+async function addUser(data: object) {
+   async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    data = new FormData();
     const response = await fetch('/api/users/addUser', {
         method: 'POST',
-        body: JSON.stringify(data)
+        headers:{
+            'Content-type':'application/json;charset=UTF-8'
+        },
+        body: JSON.stringify({data})
+
     })
     console.log(response)
+   }
 }
 
 const Login: NextPage = ({ }) => {
