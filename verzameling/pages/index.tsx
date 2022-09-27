@@ -1,31 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { PrismaClient, test } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 let data: test[]
 let rows
-
-// export async function getServerSideProps() {
-//   const prisma = new PrismaClient()
-//   return {
-//     props: {
-//       x: await prisma.test.findMany()
-//     }
-//   }
-// }
-
-// async function saveTest(test: test) {
-//   const response = await fetch('/api/addTest',{
-//     method: 'POST',
-//     body: JSON.stringify(test)
-//   })
-
-//   if (!response.ok)
-//     throw new Error(response.statusText)
-
-//   return await response.json();
-// }
 
 const Home: NextPage = ({ }) => {
   return (
