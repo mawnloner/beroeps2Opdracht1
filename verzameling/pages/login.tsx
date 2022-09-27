@@ -1,16 +1,21 @@
 import type { NextPage } from 'next'
+import { FormEvent } from 'react'
 
-declare var userName: string;
-declare var password: string;
 
-async function createAccount() {
-    userName: userName;
-    password: password;
-}
+async function addUser(data: object) {
+   async (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    data = new FormData();
+    const response = await fetch('/api/users/addUser', {
+        method: 'POST',
+        headers:{
+            'Content-type':'application/json;charset=UTF-8'
+        },
+        body: JSON.stringify({data})
 
-export {createAccount}; {
-    userName: userName;
-    password: password;
+    })
+    console.log(response)
+   }
 }
 
 const Login: NextPage = ({ }) => {
@@ -18,9 +23,15 @@ const Login: NextPage = ({ }) => {
         <div>
             <fieldset>
             <legend>Maak een account</legend>
-                <form onSubmit={createAccount()} id="createAccount">
+                <form
+                    method='POST'
+                    onSubmit={async (data) => {
+                        await addUser(data)
+                    }}
+                    id="createAccount"
+                >
                     <label htmlFor="userName">Name:</label>
-                    <input required type="text" name="userName" id="userName"/>
+                    <input required type="text" name="name" id="userName"/>
                     <label htmlFor="password">Password:</label>
                     <input required type="password" name="password" id="password"/>
 
