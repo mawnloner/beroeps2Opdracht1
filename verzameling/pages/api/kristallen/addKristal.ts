@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const kristal:kristallen = await prisma.kristallen.create({
         data: {
             naam: "",
-            prijs: 0,
+            prijs: 0.00,
             kleur: "#rrggbb",
             gewicht: "",
             transperant: false,
