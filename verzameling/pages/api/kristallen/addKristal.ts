@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             kleur: "#rrggbb",
             gewicht: "",
             transperant: false,
-            zodiac: "",
+            zodiacId: 0,
             herkomst: "",
             inhoud: 0
         }

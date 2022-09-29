@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,11 +14,21 @@ model kristallen {
   kleur       String
   gewicht     String
   transperant Boolean
-  zodiac      String
+  zodiac      zodiac  @relation(fields: [zodiacId], references: [id])
   herkomst    String
   inhoud      Float
 
-  items item[] //koppeling met items (bijde kanten)
+  items    item[] //koppeling met items (bijde kanten)
+  zodiacId Int
+}
+
+model zodiac {
+  id     Int    @id @default(autoincrement())
+  symbol String
+  name   String
+  gloss  String
+
+  kristallen kristallen[]
 }
 
 model gebruikers {

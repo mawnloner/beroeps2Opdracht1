@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { kristallen } from '@prisma/client';
 
 import { Header, Footer } from '@Components/basic'
 

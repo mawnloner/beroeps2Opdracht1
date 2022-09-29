@@ -2,35 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Header, Footer } from '@Components/basic'
-
-class zodiac {
-    symbol:String;
-    name:String;
-    gloss:String;
-    
-    constructor(unicode:String, name:String, gloss:String) {
-        this.symbol = unicode;
-        this.name = name;
-        this.gloss = gloss;
-    }
-    Output() {
-        return `${this.symbol} ${this.name} ${this.gloss}`;
-    }
-}
-const zodiacSigns = [
-    new zodiac('♈︎︎', "Aries", "Ram"),
-    new zodiac('♉︎︎', "", ""),
-    new zodiac('♊︎︎', "", ""),
-    new zodiac('♋︎︎', "", ""),
-    new zodiac('♌︎︎', "", ""),
-    new zodiac('♍︎︎', "", ""),
-    new zodiac('♎︎︎', "", ""),
-    new zodiac('♏︎︎', "", ""),
-    new zodiac('♐︎︎', "", ""),
-    new zodiac('♑︎︎', "", ""),
-    new zodiac('♒︎︎', "", ""),
-    new zodiac('♓︎︎', "", ""),
-]
+import AddKristal from '@Components/forms/kristal/AddKristal'
 
 const New: NextPage = ({ }) => {
     return (
@@ -42,16 +14,7 @@ const New: NextPage = ({ }) => {
             </Head>
             <Header />
             <main>
-                <form>
-                    <input type="text" name="naam" />
-                    <input type="number" name="prijs" step="0.01" />
-                    <input type="color" name="kleur" />
-                    <input type="text" name="gewicht" />
-                    <input type="checkbox" name="transparant" />
-                    <select name="zodiac">
-                        
-                    </select>
-                </form>
+                <AddKristal />
             </main>
             <Footer />
         </div>
