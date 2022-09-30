@@ -1,20 +1,19 @@
+import { InferGetServerSidePropsType } from 'next';
+import { zodiac } from '@prisma/client';
 import React from 'react'
 
-async function getServerSideProps() {
-    let res = await fetch("/pages/api/kristallen/zodiac/getAll");
-    let data = await res.json();
+export const getServerSideProps = async () => {
+    const res = await fetch("@api/kristallen/zodiac/getAll")
+    const data:Array<zodiac> = await res.json()
     return {
         props: {
-            zodiac: data
+            data,
         }
     }
 }
 
-function AddKristal(zodiac: Array<Object>) {
-    let zodiacOptions
-    zodiac.forEach(e => {
-        zodiacOptions += <option><option />;
-    });
+export default function AddKristal({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+    console.log(data)
     return (
         <form>
             <input type="text" name="naam" />
@@ -23,10 +22,7 @@ function AddKristal(zodiac: Array<Object>) {
             <input type="text" name="gewicht" />
             <input type="checkbox" name="transparant" />
             <select name="zodiac">
-                <option value=""></option>
             </select>
         </form>
     )
 }
-
-export default AddKristal
