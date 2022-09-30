@@ -1,10 +1,33 @@
 import type { NextPage } from 'next'
+import { zodiac } from '@prisma/client'
 import Head from 'next/head'
 
 import { Header, Footer } from '@Components/basic'
-import AddKristal from '@Components/forms/kristal/AddKristal'
 
-const New: NextPage = ({ }) => {
+import { PrismaClient } from '@prisma/client'
+import { FormEventHandler } from 'react'
+
+export const getServerSideProps = async () => {
+    const res = await fetch("http://localhost:3000/api/kristallen/zodiac/getAll")
+    const data:zodiac[] = await res.json()
+    return {
+        props: {
+            zodiacData: data
+        }
+    }
+}
+async function addKristal(data) {
+    const response = await fetch('/api/kristallen/addOne', {
+        method: 'post',
+        body: JSON.stringify(data)
+    })
+    if (!response.ok) {
+        throw new Error(response.statusText)
+    }
+    return await response.json()
+}
+
+const New: NextPage = ({ zodiacData }) => {
     return (
         <div>
             <Head>
@@ -14,7 +37,28 @@ const New: NextPage = ({ }) => {
             </Head>
             <Header />
             <main>
-                <AddKristal />
+                <form
+                    onSubmit={async (data:FormData, e) => {
+                        e.preventDefault()
+                        const x = await addKristal(data)
+                        e.target.reset()
+                        console.log(x)
+                    }}
+                >
+                    <input type="text" name="name" placeholder='name' />
+                    <input type="number" name="prijs" step="0.01" placeholder='prijs' />
+                    <input type="color" name="kleur" />
+                    <input type="text" name="gewicht" />
+                    <input type="checkbox" name="transparant" />
+                    <select name="zodiac">
+                        {zodiacData.map((z) => (
+                            <option key={"zodiac" + z.id} value={z.id}>
+                                {z.symbol} - {z.name} - {z.gloss}
+                            </option>
+                        ))}
+                    </select>
+                    <button type="submit">Add</button>
+                </form>
             </main>
             <Footer />
         </div>
