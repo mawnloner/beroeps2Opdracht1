@@ -4,7 +4,6 @@ import Head from 'next/head'
 
 import { Header, Footer } from '@Components/basic'
 
-import { PrismaClient } from '@prisma/client'
 import { FormEventHandler } from 'react'
 
 export const getServerSideProps = async () => {
@@ -16,6 +15,7 @@ export const getServerSideProps = async () => {
         }
     }
 }
+
 async function addKristal(data) {
     const response = await fetch('/api/kristallen/addOne', {
         method: 'post',
@@ -47,7 +47,7 @@ const New: NextPage = ({ zodiacData }) => {
                 >
                     <input type="text" name="name" placeholder='name' />
                     <input type="number" name="prijs" step="0.01" placeholder='prijs' />
-                    <input type="color" name="kleur" />
+                    <input type="color" name="kleur" value="#00ff00" />
                     <input type="text" name="gewicht" />
                     <input type="checkbox" name="transparant" />
                     <select name="zodiac">
@@ -57,6 +57,7 @@ const New: NextPage = ({ zodiacData }) => {
                             </option>
                         ))}
                     </select>
+                    <input type="file" name="img" />
                     <button type="submit">Add</button>
                 </form>
             </main>
