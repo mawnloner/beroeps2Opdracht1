@@ -33,6 +33,11 @@ const New: NextPage = ({ zodiacData }) => {
     });
     const addKristal = async (data) => {
         console.log(data)
+        const res = await fetch('http://localhost:3000/api/kristallen/addOne', {
+            method: 'post',
+            body: JSON.stringify(data)
+        })
+        console.log(await res.json)
     }
 
     return (
@@ -65,8 +70,12 @@ const New: NextPage = ({ zodiacData }) => {
                             </option>
                         ))}
                     </select>
-                    {/* HERKOMST */}
-                    {/* INHOUD */}
+                    <div>
+                        <input type="text" placeholder='herkomst' {...register('herkomst', {required: true})} />
+                    </div>
+                    <div>
+                        <input type="number" step="0.01" placeholder='inhoud' {...register('inhoud', {required: true, valueAsNumber: true})} />
+                    </div>
                     {/* <input type="file" name="img" /> */}
                     <button type="submit">Add</button>
                 </form>
