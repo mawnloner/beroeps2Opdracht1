@@ -1,10 +1,9 @@
 import type { NextPage } from 'next'
 import { zodiac } from '@prisma/client'
+import { useForm } from 'react-hook-form'
 import Head from 'next/head'
 
 import { Header, Footer } from '@Components/basic'
-
-import { FormEventHandler } from 'react'
 
 export const getServerSideProps = async () => {
     const res = await fetch("http://localhost:3000/api/kristallen/zodiac/getAll")
@@ -16,18 +15,26 @@ export const getServerSideProps = async () => {
     }
 }
 
-async function addKristal(data) {
-    const response = await fetch('/api/kristallen/addOne', {
-        method: 'post',
-        body: JSON.stringify(data)
-    })
-    if (!response.ok) {
-        throw new Error(response.statusText)
-    }
-    return await response.json()
-}
+// async function addKristal(data) {
+
+//     const response = await fetch('/api/kristallen/addOne', {
+//         method: 'post',
+//         body: JSON.stringify(data)
+//     })
+//     if (!response.ok) {
+//         throw new Error(response.statusText)
+//     }
+//     return await response.json()
+// }
 
 const New: NextPage = ({ zodiacData }) => {
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        shouldUnregister: true
+    });
+    const addKristal = async (data) => {
+        console.log(data)
+    }
+
     return (
         <div>
             <Head>
@@ -37,27 +44,30 @@ const New: NextPage = ({ zodiacData }) => {
             </Head>
             <Header />
             <main>
-                <form
-                    onSubmit={async (data:FormData, e) => {
-                        e.preventDefault()
-                        const x = await addKristal(data)
-                        e.target.reset()
-                        console.log(x)
-                    }}
-                >
-                    <input type="text" name="name" placeholder='name' />
-                    <input type="number" name="prijs" step="0.01" placeholder='prijs' />
-                    <input type="color" name="kleur" value="#00ff00" />
-                    <input type="text" name="gewicht" />
-                    <input type="checkbox" name="transparant" />
-                    <select name="zodiac">
+                <form onSubmit={handleSubmit(addKristal)}>
+                    <div>
+                        <input type="text" placeholder='Name' {...register('naam', { required: "This feeld is required" })} />
+                    </div>
+                        <input type="number" placeholder='Prijs' step="0.01" {...register('prijs', { required: true, valueAsNumber: true })} />
+                    <div>
+                        <input type="color" defaultValue='#00ff00' {...register('kleur', { required: true })} />
+                    </div>
+                    <div>
+                        <input type="text" placeholder='Gewicht' {...register('gewicht', { required: true })} />
+                    </div>
+                    <div>
+                        Trasnparant: <input type="checkbox" {...register('transperant')} />
+                    </div>
+                    <select {...register('zodiacId', {valueAsNumber: true})}>
                         {zodiacData.map((z) => (
                             <option key={"zodiac" + z.id} value={z.id}>
                                 {z.symbol} - {z.name} - {z.gloss}
                             </option>
                         ))}
                     </select>
-                    <input type="file" name="img" />
+                    {/* HERKOMST */}
+                    {/* INHOUD */}
+                    {/* <input type="file" name="img" /> */}
                     <button type="submit">Add</button>
                 </form>
             </main>

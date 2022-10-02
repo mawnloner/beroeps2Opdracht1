@@ -8,7 +8,7 @@ datasource db {
 }
 
 model kristallen {
-  id          String  @id @default(uuid())
+  id          String  @id @default(cuid())
   naam        String
   prijs       Float
   kleur       String
@@ -40,8 +40,8 @@ model gebruikers {
 }
 
 model item {
-  id      String     @id @default(uuid())
-  crystal kristallen @relation(fields: [kristallenId], references: [id]) //zegt: crystal heeft een relatie met de tabel kristallen. En crystalID staat gelijk aan id uit kristallen
+  id      String     @id @default(cuid())
+  kristal kristallen @relation(fields: [kristallenId], references: [id]) //zegt: crystal heeft een relatie met de tabel kristallen. En crystalID staat gelijk aan id uit kristallen
   count   Int        @default(1)
 
   kristallenId          String
