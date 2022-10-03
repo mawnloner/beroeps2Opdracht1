@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import { zodiac } from '@prisma/client'
-import { useForm } from 'react-hook-form'
+import { zodiac, prisma } from '@prisma/client'
+import { FieldValues, SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
 import Head from 'next/head'
 
 import { Header, Footer } from '@Components/basic'
@@ -14,11 +14,9 @@ export const getServerSideProps = async () => {
         }
     }
 }
-
+// SubmitHandler<FieldValues>
 const New: NextPage = ({ zodiacData }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        shouldUnregister: true
-    });
+    const { register, handleSubmit, formState: { errors } } = useForm()
     const addKristal = async (data) => {
         console.log(data)
         // const res = await fetch('http://localhost:3000/api/kristallen/addOne', {
@@ -43,7 +41,7 @@ const New: NextPage = ({ zodiacData }) => {
                     </div>
                         <input type="number" placeholder='Prijs' step="0.01" {...register('prijs', { required: true, valueAsNumber: true })} />
                     <div>
-                        <input type="color" defaultValue='#00ff00' {...register('kleur', { required: true })} />
+                        <input type="color" defaultValue='#950909' {...register('kleur', { required: true })} />
                     </div>
                     <div>
                         <input type="text" placeholder='Gewicht' {...register('gewicht', { required: true })} />
@@ -65,7 +63,7 @@ const New: NextPage = ({ zodiacData }) => {
                         <input type="number" step="0.01" placeholder='inhoud' {...register('inhoud', {required: true, valueAsNumber: true})} />
                     </div>
                     <div>
-                        <input type="file" {...register('foto', {required: true})} />
+                        <input type="file" accept='image/png, image/jpeg' {...register('foto', {required: true})} />
                     </div>
                     <button type="submit">Add</button>
                 </form>
