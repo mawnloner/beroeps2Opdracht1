@@ -15,29 +15,17 @@ export const getServerSideProps = async () => {
     }
 }
 
-// async function addKristal(data) {
-
-//     const response = await fetch('/api/kristallen/addOne', {
-//         method: 'post',
-//         body: JSON.stringify(data)
-//     })
-//     if (!response.ok) {
-//         throw new Error(response.statusText)
-//     }
-//     return await response.json()
-// }
-
 const New: NextPage = ({ zodiacData }) => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         shouldUnregister: true
     });
     const addKristal = async (data) => {
         console.log(data)
-        const res = await fetch('http://localhost:3000/api/kristallen/addOne', {
-            method: 'post',
-            body: JSON.stringify(data)
-        })
-        console.log(await res.json)
+        // const res = await fetch('http://localhost:3000/api/kristallen/addOne', {
+        //     method: 'post',
+        //     body: JSON.stringify(data)
+        // })
+        // console.log(await res.json)
     }
 
     return (
@@ -76,7 +64,9 @@ const New: NextPage = ({ zodiacData }) => {
                     <div>
                         <input type="number" step="0.01" placeholder='inhoud' {...register('inhoud', {required: true, valueAsNumber: true})} />
                     </div>
-                    {/* <input type="file" name="img" /> */}
+                    <div>
+                        <input type="file" {...register('foto', {required: true})} />
+                    </div>
                     <button type="submit">Add</button>
                 </form>
             </main>
