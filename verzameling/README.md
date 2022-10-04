@@ -1,7 +1,7 @@
 #
 
 ## When you firt 
-run `npm instal`
+run `npm install`
 
 ## Then
 Use `npm run dev` to start a live server at [http://localhost:3000](http://localhost:3000)  
