@@ -1,47 +1,74 @@
-//GEEFT NU GEEN ERROR MEER, MAAR VOEGT OOK NIET TOE
-//KIJK NAAR DE JSON STRINGIFY EN DEBUG DEZE
-//KIJK DAN OF DAT DE ADDUSERS WEL GOED IS
-
 import type { NextPage } from 'next'
-import { FormEvent } from 'react'
+import { prisma, gebruikers } from '@prisma/client'
+import { FieldValues, SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form'
+import Head from 'next/head'
 
-async function addUser(data: object) {
-   async (event: { preventDefault: () => void; }) => {
-    event.preventDefault();
-    console.log(data);
-    data = new FormData();
-    const response = await fetch('http://localhost:3000/api/users/getUsers', {
-        method: 'POST',
-        headers:{
-            'Content-type':'application/json;charset=UTF-8',
-            body: JSON.stringify({data})
-        },
-    })
-    console.log(response)
-   }
+import { Header, Footer } from '@Components/basic'
+
+// gets all the users
+export const getServerSideProps = async () => {
+    const res = await fetch("http://localhost:3000/api/users/getUsers")
+    const data:gebruikers[] = await res.json()
+    return {
+        props: {
+            gebruikersData: data
+        }
+    }
 }
 
+// handles the addUsers with a POST json to addUsers.ts 
+// needs to also handle the checkUser.ts (will be new doc)
 const Login: NextPage = ({ }) => {
+    const {register, handleSubmit, formState: {errors}} = useForm()
+    const addGebruiker = async (data) => {
+        const res = fetch("http://localhost:3000/api/users/addUser", {
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+    }
+
+    const checkGebruikers = async (data) => {
+        const res = fetch("http://localhost:3000/api/users/checkUsers", {
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+    }
+    
     return(
+        <>
         <div>
             <fieldset>
-            <legend>Maak een account</legend>
-                <form
-                    method='POST'
-                    onSubmit={async (data) => {
-                        await addUser(data)
-                    }}
-                    id="createAccount"
-                >
+            <legend>Account aanmaken</legend>
+                <form onSubmit={handleSubmit(addGebruiker)}>
                     <label htmlFor="name">Name:</label>
-                    <input required type="text" name="name" id="name"/>
+                    <input type="text" id="name" {...register('naam', {required: true})}/>
                     <label htmlFor="password">Password:</label>
-                    <input required type="password" name="password" id="password"/>
+                    <input type="password" id="password" {...register('password', {required: true})}/>
 
                     <input type="submit" value="Account aanmaken" />
                 </form>
             </fieldset>
         </div>
+
+        {/* LOGIN MAKEN */}
+        {/* MOGELIJKE SOLLUTION: CHECK IF 
+        USERNAME && PASSWORD OP 1 OBJECT ZITTEN */}
+        <div>
+            <fieldset>
+            <legend>Inloggen</legend>
+                <form onSubmit={handleSubmit(checkGebruikers)}>
+                    <label htmlFor="nameInlog">Name:</label>
+                    <input type="text" id="nameInlog" {...register('naam', {required: true})}/>
+                    <label htmlFor="passwordInlog">Password:</label>
+                    <input type="password" id="passwordInlog" {...register('password', {required: true})}/>
+
+                    <input type="submit" value="Login" />
+                </form>
+            </fieldset>
+        </div>
+        </>
+
+        
     )
 }
 
