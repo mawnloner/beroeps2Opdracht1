@@ -1,3 +1,5 @@
+// SAME CODE AS ADDUSERS.TS, NEEDS CHANGE
+
 import { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient, gebruikers } from "@prisma/client";
 
