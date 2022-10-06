@@ -18,7 +18,6 @@ export const getServerSideProps = async () => {
 }
 
 const index: NextPage = ({ kristallen }) => {
-    console.log(kristallen[0])
     return (
         <div>
             <Head>
@@ -31,6 +30,7 @@ const index: NextPage = ({ kristallen }) => {
                 {kristallen.map((k) => (
                     <div key={k.id} className="kristal" style={{ ['--kristal_kleur' as any]: k.kleur }} >
                         <h2>{k.naam}</h2>
+                        <img src="/media/test.jpg" alt="houd rekeing met een afbeelding" />
                         <p>
                             prijs: {k.prijs}<br />
                             kleur: {k.kleur}<br />
