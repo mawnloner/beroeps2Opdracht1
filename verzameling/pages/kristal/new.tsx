@@ -63,7 +63,7 @@ const New: NextPage = ({ zodiacData }) => {
                         <input type="number" step="0.01" placeholder='inhoud' {...register('inhoud', {required: true, valueAsNumber: true})} />
                     </div>
                     <div>
-                        <input type="file" accept='image/png, image/jpeg' {...register('foto', {required: true})} />
+                        {/* <input type="file" accept='image/png, image/jpeg' {...register('foto', {required: true})} />  */}
                     </div>
                     <button type="submit">Add</button>
                 </form>
