@@ -50,9 +50,6 @@ const Login: NextPage = ({ }) => {
             </fieldset>
         </div>
 
-        {/* LOGIN MAKEN */}
-        {/* MOGELIJKE SOLLUTION: CHECK IF 
-        USERNAME && PASSWORD OP 1 OBJECT ZITTEN */}
         <div>
             <fieldset>
             <legend>Inloggen</legend>
