@@ -1,10 +1,8 @@
-// SAME CODE AS ADDUSERS.TS, NEEDS CHANGE
-
 import { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient, gebruikers } from "@prisma/client";
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
-    if ('POST' !== req.method) {
+    if ('POST' == req.method) {
         return res.json({message: 'Method not allowed'})
     }
     const prisma = new PrismaClient()

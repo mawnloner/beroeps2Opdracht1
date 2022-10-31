@@ -18,8 +18,8 @@ export const getServerSideProps = async () => {
 
 const Login: NextPage = ({ }) => {
     const {register, handleSubmit, formState: {errors}} = useForm()
-    const addGebruiker = async (data) => {
-        const res = fetch("http://localhost:3000/api/users/addUser", {
+    const checkGebruikers = async (data) => {
+        const res = fetch("http://localhost:3000/api/users/checkUsers", {
             method: 'POST',
             body: JSON.stringify(data)
         })
@@ -29,22 +29,21 @@ const Login: NextPage = ({ }) => {
         <>
         <div>
             <fieldset>
-            <legend>Account aanmaken</legend>
-                <form onSubmit={handleSubmit(addGebruiker)}>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" {...register('naam', {required: true})}/>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" {...register('password', {required: true})}/>
+            <legend>Inloggen</legend>
+                <form onSubmit={handleSubmit(checkGebruikers)}>
+                    <label htmlFor="nameInlog">Name:</label>
+                    <input type="text" id="nameInlog" {...register('naam', {required: true})}/>
+                    <label htmlFor="passwordInlog">Password:</label>
+                    <input type="password" id="passwordInlog" {...register('password', {required: true})}/>
 
-                    <input type="submit" value="Account aanmaken" />
+                    <input type="submit" value="Login" />
                 </form>
             </fieldset>
         </div>
-        {/* button to link to loginUser */}
-        <p>Heeft u al een account? </p><a href="loginUser">Login!</a>
-        </>
+        {/* button to link to login */}
+        <p>Heeft u nog geen account? </p><a href="login">Creëer een account!</a>
 
-        
+        </>
     )
 }
 

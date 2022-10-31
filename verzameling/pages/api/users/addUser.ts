@@ -7,6 +7,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     }
     const prisma = new PrismaClient()
     const data = JSON.parse(req.body)
+    
     const newGebruiker: gebruikers = await prisma.gebruikers.create({
             data: data
         }
