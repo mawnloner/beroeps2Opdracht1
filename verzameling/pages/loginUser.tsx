@@ -24,7 +24,7 @@ const Login: NextPage = ({ }) => {
             body: JSON.stringify({data})
         })
         const user = (await res).json;
-        document.cookie = `userID=${user.id}; userName=${user.naam}; userRole=${user.role}; SameSite=None`;
+        document.cookie = `userID=${user.id}; userName=${user.naam}; userRole=${user.role}; SameSite=None; Secure`;
         console.log(document.cookie);
     }
     
