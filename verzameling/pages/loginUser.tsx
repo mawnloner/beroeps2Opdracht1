@@ -5,17 +5,6 @@ import Head from 'next/head'
 
 import { Header, Footer } from '@Components/basic'
 
-// gets all the users
-export const getServerSideProps = async () => {
-    const res = await fetch("http://localhost:3000/api/users/getUsers")
-    const data:gebruikers[] = await res.json()
-    return {
-        props: {
-            gebruikersData: data
-        }
-    }
-}
-
 const Login: NextPage = ({ }) => {
     const {register, handleSubmit, formState: {errors}} = useForm()
     const checkGebruikers = async (data) => {
@@ -30,6 +19,7 @@ const Login: NextPage = ({ }) => {
     
     return(
         <>
+        <Header />
         <div>
             <fieldset>
             <legend>Inloggen</legend>
@@ -45,7 +35,7 @@ const Login: NextPage = ({ }) => {
         </div>
         {/* button to link to login */}
         <p>Heeft u nog geen account? </p><a href="login">Creëer een account!</a>
-
+        <Footer />
         </>
     )
 }

@@ -27,6 +27,7 @@ const Login: NextPage = ({ }) => {
     
     return(
         <>
+        <Header />
         <div>
             <fieldset>
             <legend>Account aanmaken</legend>
@@ -42,6 +43,7 @@ const Login: NextPage = ({ }) => {
         </div>
         {/* button to link to loginUser */}
         <p>Heeft u al een account? </p><a href="loginUser">Login!</a>
+        <Footer />
         </>
 
         

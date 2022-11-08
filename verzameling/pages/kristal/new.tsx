@@ -19,11 +19,11 @@ const New: NextPage = ({ zodiacData }) => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const addKristal = async (data) => {
         console.log(data)
-        // const res = await fetch('http://localhost:3000/api/kristallen/addOne', {
-        //     method: 'post',
-        //     body: JSON.stringify(data)
-        // })
-        // console.log(await res.json)
+        const res = await fetch('http://localhost:3000/api/kristallen/addOne', {
+            method: 'POST',
+            body: JSON.stringify(data)
+        })
+        console.log(await res.json)
     }
 
     return (
