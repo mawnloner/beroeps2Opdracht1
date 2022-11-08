@@ -21,8 +21,11 @@ const Login: NextPage = ({ }) => {
     const checkGebruikers = async (data) => {
         const res = fetch("http://localhost:3000/api/users/checkUsers", {
             method: 'POST',
-            body: JSON.stringify(data)
+            body: JSON.stringify({data})
         })
+        const user = (await res).json;
+        document.cookie = `userID=${user.id}; userName=${user.naam}; userRole=${user.role}; SameSite=None`;
+        console.log(document.cookie);
     }
     
     return(
@@ -32,9 +35,9 @@ const Login: NextPage = ({ }) => {
             <legend>Inloggen</legend>
                 <form onSubmit={handleSubmit(checkGebruikers)}>
                     <label htmlFor="nameInlog">Name:</label>
-                    <input type="text" id="nameInlog" {...register('naam', {required: true})}/>
+                    <input defaultValue="Admin" type="text" id="nameInlog" {...register('naam', {required: true})}/>
                     <label htmlFor="passwordInlog">Password:</label>
-                    <input type="password" id="passwordInlog" {...register('password', {required: true})}/>
+                    <input defaultValue="admin" type="password" id="passwordInlog" {...register('password', {required: true})}/>
 
                     <input type="submit" value="Login" />
                 </form>

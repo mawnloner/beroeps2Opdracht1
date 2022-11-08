@@ -9,3 +9,8 @@ To end the live server press `control` + `c`.
 
 ### Notes:
 1. `control`/`comand` + `shift` + `p` type `restart ts server`
+
+#### Todo:
+add
+import { getCookie, setCookie } from 'typescript-cookie'
+to everything

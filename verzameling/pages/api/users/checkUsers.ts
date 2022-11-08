@@ -2,34 +2,30 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient, gebruikers } from "@prisma/client";
 
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
-    if ('POST' == req.method) {
+    if ('POST' != req.method) {
         return res.json({message: 'Method not allowed'})
     }
-    const prisma = new PrismaClient()
-    const data = JSON.parse(req.body)
+    const data = JSON.parse(req.body);
+    const prisma = new PrismaClient();
 
-    // BEGIN LOGIN CHECK
-    // GET GIVEN USERNAME AND PASSWORD FROM JSON
-    var givenUser = data.name;
-    var givenPass = data.password;
-
-    // FIND THE ID WHERE USERNAME IS GIVENUSER
-    const getUser = await prisma.gebruikers.findFirst({
-        where: {naam: givenUser},
-        select: {id: true}
+    const user = await prisma.gebruikers.findFirst({
+        where: {
+            AND: [
+                { naam: data.naam },
+                { password: data.password }
+            ]
+        },
+        select: {
+            id: true,
+            naam: true,
+            role: true
+        }
     });
-
-    // FIND THE ID WHERE PASSWORD IS GIVENPASS
-    const getPass = await prisma.gebruikers.findFirst({
-        where: {password: givenPass},
-        select: {id: true}
-    });
-
-    // IF GETUSER ID IS THE SAME AS GETPASS ALLOW LOGIN
-    // ELSE DISPLAY ERROR
-    if (getUser == getPass) {
-        console.log("login werkt");
-    }
 
     prisma.$disconnect()
+    if (null != user) {
+        document.cookie = `userID=${user.id}; userName=${user.naam}; userRole=${user.role}; SameSite=none; Secure`;
+        res.json(user);
+    }
+
 }

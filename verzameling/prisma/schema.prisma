@@ -33,7 +33,7 @@ model zodiac {
 
 model gebruikers {
   id           String       @id @default(uuid())
-  naam         String
+  naam         String       @unique
   password     String
   role         String       @default("USER")
   bestellingen bestelling[] //koppeling met bestelling (bijde kanten)

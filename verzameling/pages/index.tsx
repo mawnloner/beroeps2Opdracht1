@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { Header, Footer } from '@Components/basic'
 
 const Home: NextPage = ({}) => {
+  let cookie = document.cookie
   return (
     <div>
       <Head>
@@ -13,7 +14,7 @@ const Home: NextPage = ({}) => {
       </Head>
       <Header />
       <main>
-        
+        <h1>{cookie}</h1>
       </main>
       <Footer />
     </div>
