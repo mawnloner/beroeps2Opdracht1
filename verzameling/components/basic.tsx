@@ -1,6 +1,8 @@
 import React from 'react'
 
-export function Header() {
+export function Header(loggedIn:boolean) {
+    let loginLink = loggedIn ? <a href="/loginUser">Inloggen</a> : <a href="/logoutUser">Uitloggen</a>
+
     return (
         <header>
             <ul>
@@ -8,7 +10,8 @@ export function Header() {
                 <li className="links"><a href="/kristal">Onze Collectie</a></li>
                 <li className="midden"><a href="/"><img src="/media/test.jpg" alt="" /></a></li>
                 {/* <li className="rechts"><a href="">Winkelmand</a></li> */}
-                <li className="rechts"><a href="/loginUser">Inloggen</a></li>
+                
+                <li className="rechts">{loginLink}</li>
             </ul>
         </header>
     )

@@ -9,5 +9,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
     })
     prisma.$disconnect()
-    res.json(data)
+    return res.json(data)
 }
