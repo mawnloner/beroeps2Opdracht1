@@ -21,10 +21,6 @@ const Login: NextPage = ({ }) => {
         const userId = sessionStorage.getItem('userId');
         const userName = sessionStorage.getItem('userName');
         const userRole = sessionStorage.getItem('userName');
-
-        console.log(userId, userName, userRole)
-        
-
     }
     
     return(
