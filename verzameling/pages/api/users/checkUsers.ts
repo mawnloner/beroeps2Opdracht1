@@ -23,9 +23,11 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     });
 
     prisma.$disconnect()
+
     if (null != user) {
-        document.cookie = `userID=${user.id}; userName=${user.naam}; userRole=${user.role}; SameSite=none; Secure`;
-        res.json(user);
+        return res.json(user);
+    } else {
+        return res.json({message: 'user is null'})
     }
 
 }

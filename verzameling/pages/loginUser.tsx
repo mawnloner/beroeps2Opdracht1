@@ -12,9 +12,19 @@ const Login: NextPage = ({ }) => {
             method: 'POST',
             body: JSON.stringify({data})
         })
-        const user = (await res).json;
-        document.cookie = `userID=${user.id}; userName=${user.naam}; userRole=${user.role}; SameSite=None; Secure`;
-        console.log(document.cookie);
+        const user = await (await res).json();
+
+        sessionStorage.setItem('userId', user.id);
+        sessionStorage.setItem('userName', `${user.naam}`);
+        sessionStorage.setItem('userRole', `${user.role}`);
+
+        const userId = sessionStorage.getItem('userId');
+        const userName = sessionStorage.getItem('userName');
+        const userRole = sessionStorage.getItem('userName');
+
+        console.log(userId, userName, userRole)
+        
+
     }
     
     return(
