@@ -26,21 +26,18 @@ const Login: NextPage = ({ }) => {
     return(
         <>
         <Header />
-        <div>
-            <fieldset>
-            <legend>Inloggen</legend>
-                <form onSubmit={handleSubmit(checkGebruikers)}>
-                    <label htmlFor="nameInlog">Name:</label>
-                    <input defaultValue="Admin" type="text" id="nameInlog" {...register('naam', {required: true})}/>
-                    <label htmlFor="passwordInlog">Password:</label>
-                    <input defaultValue="admin" type="password" id="passwordInlog" {...register('password', {required: true})}/>
+        <div className='login'>
+            <form onSubmit={handleSubmit(checkGebruikers)}>
+                <label htmlFor="nameInlog">Name:</label>
+                <input defaultValue="Admin" type="text" id="nameInlog" {...register('naam', {required: true})}/>
+                <label htmlFor="passwordInlog">Password:</label>
+                <input defaultValue="admin" type="password" id="passwordInlog" {...register('password', {required: true})}/>
 
-                    <input type="submit" value="Login" />
-                </form>
-            </fieldset>
+                <input type="submit" value="Login" />
+            </form>
+            <p>Nog geen account?</p><a href="login">Register</a>
         </div>
         {/* button to link to login */}
-        <p>Heeft u nog geen account? </p><a href="login">Creëer een account!</a>
         <Footer />
         </>
     )

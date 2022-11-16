@@ -28,21 +28,19 @@ const Login: NextPage = ({ }) => {
     return(
         <>
         <Header />
-        <div>
-            <fieldset>
-            <legend>Account aanmaken</legend>
-                <form onSubmit={handleSubmit(addGebruiker)}>
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" id="name" {...register('naam', {required: true})}/>
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" {...register('password', {required: true})}/>
+        <div className='register'>
+            <form onSubmit={handleSubmit(addGebruiker)}>
+                <label htmlFor="name">Name:</label>
+                <input type="text" id="name" {...register('naam', {required: true})}/>
+                <label htmlFor="password">Password:</label>
+                <input type="password" id="password" {...register('password', {required: true})}/>
 
-                    <input type="submit" value="Account aanmaken" />
-                </form>
-            </fieldset>
+                <input type="submit" value="Account aanmaken" />
+            </form>
+            <p>Heeft u al een account? </p><a href="loginUser">Login!</a>
         </div>
         {/* button to link to loginUser */}
-        <p>Heeft u al een account? </p><a href="loginUser">Login!</a>
+
         <Footer />
         </>
 
