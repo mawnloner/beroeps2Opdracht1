@@ -19,7 +19,6 @@ export function Header(loggedIn:boolean) {
 export function Footer() {
     return (
         <footer>
-            footer
         </footer>
     )
 }

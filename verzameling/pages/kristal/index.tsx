@@ -2,10 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { kristallen } from '@prisma/client'
-import { useState } from 'react';
 
 import { Header, Footer } from '@Components/basic'
-import Script from 'next/script';
 
 
 export const getServerSideProps = async () => {
@@ -28,17 +26,17 @@ const index: NextPage = ({ kristallen }) => {
             </Head>
             <Header />
             <main>
-                {kristallen.map((k) => (
-                    <div key={k.id} className="kristal" style={{ ['--kristal_kleur' as any]: k.kleur }} >
-                        <h2>{k.naam}</h2>
-                        <img src="/media/test.jpg" alt="houd rekeing met een afbeelding" />
-                        <p>
-                            prijs: {k.prijs}<br />
-                            kleur: {k.kleur}<br />
-                            inhoud: {k.inhoud}<br />
-                            zodiac: {k.zodiac.symbol} - {k.zodiac.name} - {k.zodiac.gloss}
-                        </p>
-                    </div>
+                {kristallen.map((k:kristallen) => (
+                     <div key={k.id} className="kristal" style={{ ['--kristal_kleur' as any]: k.kleur }} >
+                         <h2>{k.naam}</h2>
+                         <img src={`/media/kristal/${k.id}.jpg`} />
+                         <p>
+                             prijs: {k.prijs}<br />
+                             kleur: {k.kleur}<br />
+                             inhoud: {k.inhoud}<br />
+                             zodiac: {k.zodiac.symbol} - {k.zodiac.name} - {k.zodiac.gloss}
+                         </p>
+                     </div>
                 ))}
             </main>
             <Footer />

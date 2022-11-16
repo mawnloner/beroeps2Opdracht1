@@ -20,7 +20,7 @@ const Login: NextPage = ({ }) => {
 
         const userId = sessionStorage.getItem('userId');
         const userName = sessionStorage.getItem('userName');
-        const userRole = sessionStorage.getItem('userName');
+        const userRole = sessionStorage.getItem('userRole');
     }
     
     return(
