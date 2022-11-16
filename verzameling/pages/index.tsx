@@ -9,7 +9,7 @@ import Script from 'next/script';
 
 
 export const getServerSideProps = async () => {
-    const res = await fetch("http://localhost:3000/api/kristallen/getAll")
+    const res = await fetch("http://localhost:3000/api/kristallen/getSelect")
     const data: kristallen[] = await res.json()
     return {
         props: {

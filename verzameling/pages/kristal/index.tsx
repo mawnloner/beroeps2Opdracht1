@@ -25,11 +25,11 @@ const index: NextPage = ({ kristallen }) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header />
-            <main>
+            <main className='collectie'>
                 {kristallen.map((k:kristallen) => (
                      <div key={k.id} className="kristal" style={{ ['--kristal_kleur' as any]: k.kleur }} >
                          <h2>{k.naam}</h2>
-                         <img src={`/media/kristal/${k.id}.jpg`} />
+                         <img className='kristalimg' src={`/media/kristal/${k.id}.jpg`} />
                          <p>
                              prijs: {k.prijs}<br />
                              kleur: {k.kleur}<br />
@@ -38,6 +38,9 @@ const index: NextPage = ({ kristallen }) => {
                          </p>
                      </div>
                 ))}
+                <div className='voegToe'>
+                    <h1><a href="kristal/new">Voeg een kristal toe</a></h1>
+                </div>
             </main>
             <Footer />
         </div>
