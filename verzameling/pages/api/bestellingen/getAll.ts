@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             gebruikers: true,
             products: {
                 include: {
-                    crystal: true
+                    kristal: true
                 }
             }
         }
