@@ -1,11 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import { kristallen } from '@prisma/client';
+import { kristallen } from '@prisma/client'
 import { useState } from 'react';
 
 import { Header, Footer } from '@Components/basic'
 import Script from 'next/script';
+
 
 export const getServerSideProps = async () => {
     const res = await fetch("http://localhost:3000/api/kristallen/getAll")

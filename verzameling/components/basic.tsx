@@ -8,10 +8,9 @@ export function Header(loggedIn:boolean) {
             <ul>
                 <li className="links"><a href="/contact">Contact</a></li>
                 <li className="links"><a href="/kristal">Onze Collectie</a></li>
-                <li className="midden"><a href="/"><img src="/media/test.jpg" alt="" /></a></li>
-                {/* <li className="rechts"><a href="">Winkelmand</a></li> */}
-                
+                {<li className="rechts"><a href="">Winkelmand</a></li>}
                 <li className="rechts">{loginLink}</li>
+                <li className="midden"><a href="/"><img id='logo' src="/media/Logo.png" alt="" /></a></li>
             </ul>
         </header>
     )
