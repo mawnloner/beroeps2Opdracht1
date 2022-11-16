@@ -6,7 +6,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const data = await prisma.kristallen.findFirst({
         include: {
             zodiac: true
-        }
+        },
+        take: 3
     })
     prisma.$disconnect()
     return res.json(data)

@@ -1,16 +1,9 @@
-#
-
-## When you firt 
+## First
 run `npm install`
 
 ## Then
-Use `npm run dev` to start a live server at [http://localhost:3000](http://localhost:3000)  
-To end the live server press `control` + `c`.
+run `npx prisma mirage dev` if it asks for a name, just use dev
+run `npx prisma generate`
 
-### Notes:
-1. `control`/`comand` + `shift` + `p` type `restart ts server`
-
-#### Todo:
-add
-import { getCookie, setCookie } from 'typescript-cookie'
-to everything
+## Finaly
+run `npm run dev`
