@@ -1,3 +1,4 @@
+# Setup
 ## First
 run `npm install`
 
@@ -7,3 +8,16 @@ run `npx prisma generate`
 
 ## Finaly
 run `npm run dev`
+
+# Kristallen toevoegen
+- Ga naar `/kristal/new` om een kristal toe te voegen <small>(afbeeldingen toevoegen werkt helaas niet)</small>
+
+# Rolverdeling
+- Remco
+    - Inlog systeem
+- Jobbe
+    - Stijl
+    - Content
+- Cefas
+    - Node, Next, Prisma uitzoeken + setup
+    - Systeem achter kristallen

@@ -5,7 +5,6 @@ import { kristallen } from '@prisma/client'
 
 import { Header, Footer } from '@Components/basic'
 
-
 export const getServerSideProps = async () => {
     const res = await fetch("http://localhost:3000/api/kristallen/getAll")
     const data: kristallen[] = await res.json()
@@ -16,7 +15,7 @@ export const getServerSideProps = async () => {
     }
 }
 
-const index: NextPage = ({ kristallen }) => {
+const index: NextPage = ({ kristallen }: any) => {
     return (
         <div>
             <Head>

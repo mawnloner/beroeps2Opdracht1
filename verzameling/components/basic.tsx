@@ -1,16 +1,15 @@
 import React from 'react'
+import Link from 'next/link'
 
-export function Header(loggedIn:boolean) {
-    let loginLink = loggedIn ? <a href="/loginUser">Inloggen</a> : <a href="/logoutUser">Uitloggen</a>
-
+export function Header() {
     return (
         <header>
             <ul>
-                <li className="links"><a href="/contact">Contact</a></li>
-                <li className="links"><a href="/kristal">Onze Collectie</a></li>
-                <li className="rechts"><a href="">Winkelmand</a></li>
-                <li className="rechts">{loginLink}</li>
-                <li className="midden"><a href="/"><img id='logo' src="/media/Logo.png" alt="" /></a></li>
+                <li className="links"><Link href="/contact">Contact</Link></li>
+                <li className="links"><Link href="/kristal">Onze Collectie</Link></li>
+                <li className="rechts"><Link href="">Winkelmand</Link></li>
+                <li className="rechts"><Link href="/loginUser">Inloggen</Link></li>
+                <li className="midden"><Link href="/"><img id='logo' src="/media/Logo.png" alt="" /></Link></li>
             </ul>
         </header>
     )
